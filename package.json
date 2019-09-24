@@ -1,0 +1,10 @@
+{
+  "name": "miaomiao",
+  "version": "1.0.0",
+  "description": "喵喵电影项目",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "cyrus",
+  "license": "ISC"
+}
