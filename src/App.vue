@@ -40,9 +40,9 @@ export default {
   },
   watch: {
     selected(newVal, oldVal) {
-      if (newVal == "movie") {
+      if (newVal == "movie" && this.$route.path != '/index') {
         this.$router.push({ path: "/index" });
-      } else if (newVal == "cinema") {
+      } else if (newVal == "cinema" && this.$route.path != '/cinema') {
         this.$router.push({ path: "/cinema" });
       }
     }
