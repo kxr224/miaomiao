@@ -7,13 +7,18 @@ const router = new VueRouter({
     routes: [{
             path: '/',
             redirect: '/index'
-        },
-        {
+        },{
             path: '/index',
-            component: index
+            component: index,
+            meta: {
+                title: '电影'
+            }
         }, {
             path: '/cinema',
-            component: cinema
+            component: cinema,
+            meta: {
+                title: '影院'
+            }
         }
     ]
 })
