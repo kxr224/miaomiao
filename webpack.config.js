@@ -13,7 +13,18 @@ module.exports = {
         open: true,
         // contentBase: 'src',
         port: 3000,
-        hot: true
+        hot: true,
+        proxy: {
+            // '/myApi': {
+            //     target: 'http://39.97.33.178',
+            //     changeOrgin: true,
+            //     pathRewrite: {'^/myApi' : ''}
+            // }
+            '/api': {
+                target: 'http://39.97.33.178',
+                changeOrgin: true
+            }
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
