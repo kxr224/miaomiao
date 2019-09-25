@@ -6,6 +6,11 @@ import mintUI from 'mint-ui';
 import 'mint-ui/lib/style.css'
 import './font/my-font/iconfont.css'
 import './main.css'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
+
 
 
 // 安装路由
