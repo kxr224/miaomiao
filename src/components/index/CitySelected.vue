@@ -18,7 +18,6 @@ export default {
     //   });
 
     getCityList().then(res => {
-      debugger;
     });
   }
 };

@@ -8,12 +8,7 @@ import cinema from './pages/cinema/cinema.vue'
 // import willMovie from '@/components/index/WillMovie.vue'
 // import hotPlayMovie from '@/components/index/HotPlayMovie.vue'
 
-import {
-    citySelected,
-    search,
-    willMovie,
-    hotPlayMovie
-} from '@/components/index'
+import {citySelected,search,willMovie,hotPlayMovie} from '@/components/index'
 
 const router = new VueRouter({
     routes: [{
@@ -28,8 +23,8 @@ const router = new VueRouter({
         children: [
             // /index/city
             {
-                path: '',
-                redirect: 'hot-play-movie'
+                path:'',
+                redirect:'hot-play-movie'
             },
             {
                 path: 'city',
