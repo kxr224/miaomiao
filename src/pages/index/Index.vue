@@ -1,7 +1,17 @@
 <template>
-  <div>这是首页</div>
+  <div>
+    <tab></tab>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-export default {};
+import tab from "@/components/index/Tab.vue";
+
+export default {
+  // 注册组件
+  components: {
+    tab
+  }
+};
 </script>
