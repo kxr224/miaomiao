@@ -2,7 +2,8 @@
   <div>
     <mt-index-list>
       <div class="hot-city">
-        <p class="hot-city-title">热门城市</p>
+        <!-- <p class="hot-city-title">热门城市</p> -->
+        <p class="hot-city-title" @click="changeMsg">{{message123}}</p>
         <ul class="hot-city-list">
           <li v-for="city in hotCities" :key="'hot-city'+city.id">
             <p>{{city.nm}}</p>
@@ -11,8 +12,8 @@
       </div>
       <!-- <mt-index-section v-for="(value,key) in cityObj" :index="key" :key="key">
         <mt-cell v-for="city in value" :title="city.nm" :key="'list'+city.id"></mt-cell>
-      </mt-index-section> -->
-       <mt-index-section v-for="key in Object.keys(cityObj).sort()" :index="key" :key="key">
+      </mt-index-section>-->
+      <mt-index-section v-for="key in Object.keys(cityObj).sort()" :index="key" :key="key">
         <mt-cell v-for="city in cityObj[key]" :title="city.nm" :key="'list'+city.id"></mt-cell>
       </mt-index-section>
     </mt-index-list>
@@ -21,15 +22,50 @@
 
 <script>
 import { getCityList } from "@/services/city";
+// import store from "@/store/simple-store";
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
       cities: []
+      // message: this.$store.state.message,
+      // msg: store.state.message
     };
+  },
+  methods: {
+    changeMsg() {
+      // console.log("change");
+      // store.changeMessage("北京");
+      // 我们想调用mutation中的方法需要通过，store提供的commit方法
+      // this.$store.commit("changeMsg", { msg: "中国" });
+      this.$store.commit({type:'changeMsg',msg:'中国'})
+    }
   },
   // 热门城市的数据是，城市列表过滤得到的，这个时候可以通过计算属性实现
   computed: {
+    //  message() {
+    //   return this.$store.state.message;
+    // },
+    // count (){
+    //   return this.$store.state.count;
+    // },
+    ...mapState({
+      // 这个方法的参数就是store中的state
+      message: state => state.message,
+      count: state => state.count
+    }),
+    message123() {
+      return this.$store.getters.message123;
+    },
+
+    // {
+    //    message(){return 参数返回的值}
+    // }
+    // ... {msg:'你好'}
+    // {
+    //   say:function(){}
+    // }
     hotCities() {
       // 1. 数组提供的filter
       // 2. 创建一个新的数组，遍历cities,把满足条件的数据插入到新的数组中
@@ -70,17 +106,17 @@ export default {
       // 数组有序的
       // 对象的所有的key可以作为数组，在这个数组中排序
       // 通过对象和key就可以拿到对象值
-      console.log(Object.keys(cityObj).sort())
+      console.log(Object.keys(cityObj).sort());
       return cityObj;
-    },
-
+    }
   },
   created() {
     // 在我们真实的项目中，会对接口的调用进行封装
     //   this.axios.get('/api/cityList').then(res=>{
     //       ;
     //   });
-
+    // const mapStateObj =
+    // debugger;
     getCityList().then(res => {
       this.cities = res.data.cities;
     });
@@ -89,6 +125,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+// less可以定义变量
+@bgc: #f8f3ed;
+
 .hot-city {
   // 热门城市标题样式
   .hot-city-title {
@@ -102,7 +141,7 @@ export default {
     // flex 默认不换行
     flex-wrap: wrap;
     text-align: center;
-    background-color: #f8f3ed;
+    background-color: @bgc;
     li {
       width: 33%;
       p {
@@ -111,8 +150,16 @@ export default {
         width: 80%;
         padding: 5px;
         border-radius: 5px;
+        background-color: #fff;
       }
     }
   }
+}
+.mint-cell {
+  background-color: @bgc;
+}
+
+.mint-cell-title {
+  font-size: 22px;
 }
 </style>
