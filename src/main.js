@@ -11,7 +11,7 @@ import VueAxios from 'vue-axios'
 // import Vuex from 'vuex'
 // // 安装vuex
 // Vue.use(Vuex);
-import store from './store/store'
+import store from './store'
 
 Vue.use(VueAxios, axios);
 

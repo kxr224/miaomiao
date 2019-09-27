@@ -16,12 +16,23 @@
         }
 
         const b = {
-            title:'测试',
+            title: '测试',
             ...a
         }
 
+        const aCopy = {
+            ...a
+        }
+
+        const aCope2 = Object.assign({}, a)
+
+        const {
+            msg
+        } = a;
+
+const { commit } = context
+
         console.log(b);
-        
     </script>
 </body>
 

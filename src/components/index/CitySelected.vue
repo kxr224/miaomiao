@@ -39,7 +39,12 @@ export default {
       // store.changeMessage("北京");
       // 我们想调用mutation中的方法需要通过，store提供的commit方法
       // this.$store.commit("changeMsg", { msg: "中国" });
-      this.$store.commit({type:'changeMsg',msg:'中国'})
+      // this.$store.commit({type:'changeMsg',msg:'中国'});
+      // 触发一个action,通过dispatch触发action
+      // this.$store.dispatch('changeMsg123',{ msg: "中国" })
+      // 调用模块a的修改方法
+      // 默认情况下，模块的mutation或action是没有做模块的区分的，直接通过commit调用
+      this.$store.commit({type:'a/changeAMsg',msg:'中国'});
     }
   },
   // 热门城市的数据是，城市列表过滤得到的，这个时候可以通过计算属性实现
@@ -56,7 +61,8 @@ export default {
       count: state => state.count
     }),
     message123() {
-      return this.$store.getters.message123;
+      // return this.$store.getters.message123;
+      return this.$store.state.a.aMsg
     },
 
     // {
