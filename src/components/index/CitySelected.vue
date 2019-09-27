@@ -3,7 +3,7 @@
     <mt-index-list>
       <div class="hot-city">
         <!-- <p class="hot-city-title">热门城市</p> -->
-        <p class="hot-city-title" @click="changeMsg">{{message123}}</p>
+        <p class="hot-city-title">热门城市</p>
         <ul class="hot-city-list">
           <li v-for="city in hotCities" :key="'hot-city'+city.id">
             <p>{{city.nm}}</p>
@@ -22,10 +22,20 @@
 
 <script>
 import { getCityList } from "@/services/city";
-// import store from "@/store/simple-store";
 import { mapState } from "vuex";
 
 export default {
+  created() {
+    // 在我们真实的项目中，会对接口的调用进行封装
+    //   this.axios.get('/api/cityList').then(res=>{
+    //       ;
+    //   });
+    // const mapStateObj =
+    // debugger;
+    getCityList().then(res => {
+      this.cities = res.data.cities;
+    });
+  },
   data() {
     return {
       cities: []
@@ -33,45 +43,9 @@ export default {
       // msg: store.state.message
     };
   },
-  methods: {
-    changeMsg() {
-      // console.log("change");
-      // store.changeMessage("北京");
-      // 我们想调用mutation中的方法需要通过，store提供的commit方法
-      // this.$store.commit("changeMsg", { msg: "中国" });
-      // this.$store.commit({type:'changeMsg',msg:'中国'});
-      // 触发一个action,通过dispatch触发action
-      // this.$store.dispatch('changeMsg123',{ msg: "中国" })
-      // 调用模块a的修改方法
-      // 默认情况下，模块的mutation或action是没有做模块的区分的，直接通过commit调用
-      this.$store.commit({type:'a/changeAMsg',msg:'中国'});
-    }
-  },
+  methods: {},
   // 热门城市的数据是，城市列表过滤得到的，这个时候可以通过计算属性实现
   computed: {
-    //  message() {
-    //   return this.$store.state.message;
-    // },
-    // count (){
-    //   return this.$store.state.count;
-    // },
-    ...mapState({
-      // 这个方法的参数就是store中的state
-      message: state => state.message,
-      count: state => state.count
-    }),
-    message123() {
-      // return this.$store.getters.message123;
-      return this.$store.state.a.aMsg
-    },
-
-    // {
-    //    message(){return 参数返回的值}
-    // }
-    // ... {msg:'你好'}
-    // {
-    //   say:function(){}
-    // }
     hotCities() {
       // 1. 数组提供的filter
       // 2. 创建一个新的数组，遍历cities,把满足条件的数据插入到新的数组中
@@ -115,17 +89,6 @@ export default {
       console.log(Object.keys(cityObj).sort());
       return cityObj;
     }
-  },
-  created() {
-    // 在我们真实的项目中，会对接口的调用进行封装
-    //   this.axios.get('/api/cityList').then(res=>{
-    //       ;
-    //   });
-    // const mapStateObj =
-    // debugger;
-    getCityList().then(res => {
-      this.cities = res.data.cities;
-    });
   }
 };
 </script>

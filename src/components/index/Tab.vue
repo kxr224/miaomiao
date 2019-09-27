@@ -3,7 +3,7 @@
     <ul class="tab-list">
       <li>
         <!-- <router-link to="/index/city" tag="p">城市</router-link> -->
-        <router-link to="/index/city" tag="p">{{state.message}}</router-link>
+        <router-link to="/index/city" tag="p">城市</router-link>
       </li>
       <li>
         <router-link to="/index/hot-play-movie" tag="p">正在热映</router-link>
@@ -21,13 +21,10 @@
 </template>
 
 <script>
-import store from "@/store/simple-store";
 
 export default {
   data() {
     return {
-      state: store.state,
-      msg: store.state.message
     };
   }
 };
