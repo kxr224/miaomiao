@@ -42,6 +42,8 @@ export default {
     } else if (this.$route.path == "/cinema") {
       this.selected = "cinema";
     }
+    // 调用获取当地信息的action
+    this.$store.dispatch("setLocationCity");
   },
   watch: {
     selected(newVal, oldVal) {
@@ -80,6 +82,6 @@ export default {
 
 .app-router-enter-active,
 .app-router-leave-active {
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
 </style>

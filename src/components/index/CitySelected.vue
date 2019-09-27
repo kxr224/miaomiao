@@ -5,7 +5,7 @@
         <!-- <p class="hot-city-title">热门城市</p> -->
         <p class="hot-city-title">热门城市</p>
         <ul class="hot-city-list">
-          <li v-for="city in hotCities" :key="'hot-city'+city.id">
+          <li @click="changeCity(city)" v-for="city in hotCities" :key="'hot-city'+city.id">
             <p>{{city.nm}}</p>
           </li>
         </ul>
@@ -14,7 +14,9 @@
         <mt-cell v-for="city in value" :title="city.nm" :key="'list'+city.id"></mt-cell>
       </mt-index-section>-->
       <mt-index-section v-for="key in Object.keys(cityObj).sort()" :index="key" :key="key">
-        <mt-cell v-for="city in cityObj[key]" :title="city.nm" :key="'list'+city.id"></mt-cell>
+        <div @click="changeCity(city)" v-for="city in cityObj[key]" :key="'list'+city.id">
+          <mt-cell :title="city.nm"></mt-cell>
+        </div>
       </mt-index-section>
     </mt-index-list>
   </div>
@@ -43,7 +45,14 @@ export default {
       // msg: store.state.message
     };
   },
-  methods: {},
+  methods: {
+    changeCity(city) {
+      this.$store.commit({
+        type: "changeCity",
+        city
+      });
+    }
+  },
   // 热门城市的数据是，城市列表过滤得到的，这个时候可以通过计算属性实现
   computed: {
     hotCities() {

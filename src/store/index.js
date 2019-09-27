@@ -8,10 +8,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-      
+        selectedCity: {
+            id: 1,
+            nm: '北京',
+            py: 'beijing',
+            isHot: 1
+        }
     },
     getters: {
-     
+
     },
     mutations,
     actions

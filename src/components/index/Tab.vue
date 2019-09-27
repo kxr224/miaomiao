@@ -3,7 +3,7 @@
     <ul class="tab-list">
       <li>
         <!-- <router-link to="/index/city" tag="p">城市</router-link> -->
-        <router-link to="/index/city" tag="p">城市</router-link>
+        <router-link to="/index/city" tag="p">{{selectedCity.nm}}</router-link>
       </li>
       <li>
         <router-link to="/index/hot-play-movie" tag="p">正在热映</router-link>
@@ -21,11 +21,18 @@
 </template>
 
 <script>
-
+import { mapState } from "vuex";
 export default {
   data() {
-    return {
-    };
+    return {};
+  },
+  computed: {
+    selectedCity() {
+      return this.$store.state.selectedCity;
+    },
+    // ...mapState({
+    //   selectedCity:state=>state.selectedCity
+    // })
   }
 };
 </script>
