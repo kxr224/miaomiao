@@ -8,54 +8,70 @@ import cinema from './pages/cinema/cinema.vue'
 // import willMovie from '@/components/index/WillMovie.vue'
 // import hotPlayMovie from '@/components/index/HotPlayMovie.vue'
 
-import {citySelected,search,willMovie,hotPlayMovie} from '@/components/index'
+import {
+    citySelected,
+    search,
+    willMovie,
+    hotPlayMovie
+} from '@/components/index'
+
+import MovieDetail from '@/pages/index/MovieDetail.vue'
 
 const router = new VueRouter({
     routes: [{
-        path: '/',
-        redirect: '/index'
-    }, {
-        path: '/index',
-        component: index,
-        meta: {
-            title: '电影'
-        },
-        children: [
-            // /index/city
-            {
-                path:'',
-                redirect:'hot-play-movie'
+            path: '/',
+            redirect: '/index'
+        }, {
+            path: '/index',
+            component: index,
+            meta: {
+                title: '电影'
             },
-            {
-                path: 'city',
-                component: citySelected,
-                meta: {
-                    title: '城市选择'
+            children: [
+                // /index/city
+                {
+                    path: '',
+                    redirect: 'hot-play-movie'
+                },
+                {
+                    path: 'city',
+                    component: citySelected,
+                    meta: {
+                        title: '城市选择'
+                    }
+                },
+                {
+                    path: 'search',
+                    component: search,
+                    meta: {
+                        title: '搜索'
+                    }
+                },
+                {
+                    path: 'will-movie',
+                    component: willMovie
+                },
+                {
+                    path: 'hot-play-movie',
+                    component: hotPlayMovie
                 }
-            },
-            {
-                path: 'search',
-                component: search,
-                meta: {
-                    title: '搜索'
-                }
-            },
-            {
-                path: 'will-movie',
-                component: willMovie
-            },
-            {
-                path: 'hot-play-movie',
-                component: hotPlayMovie
+            ]
+        }, {
+            path: '/cinema',
+            component: cinema,
+            meta: {
+                title: '影院'
             }
-        ]
-    }, {
-        path: '/cinema',
-        component: cinema,
-        meta: {
-            title: '影院'
+        },
+        {
+            path: '/movie/detail/:movieId',
+            component: MovieDetail,
+            meta: {
+                title: '电影详情',
+                showBack: true
+            }
         }
-    }]
+    ]
 })
 
 export default router;

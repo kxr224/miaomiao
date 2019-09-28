@@ -14,6 +14,14 @@ import VueAxios from 'vue-axios'
 import store from './store'
 
 Vue.use(VueAxios, axios);
+Vue.filter('handleImg', function (data, size) {
+    if (size) {
+        return data.replace('w.h', size)
+    } else {
+        // 使用默认尺寸
+        return data.replace('w.h', '150.300')
+    }
+})
 
 // 安装路由
 Vue.use(VueRouter)

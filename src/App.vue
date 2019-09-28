@@ -1,6 +1,10 @@
 <template>
   <div>
-    <mt-header fixed :title="title"></mt-header>
+    <mt-header fixed :title="title">
+      <div slot="left" v-show="$route.meta.showBack">
+        <mt-button icon="back" @click="back">返回</mt-button>
+      </div>
+    </mt-header>
     <div class="content">
       <transition name="app-router" mode="out-in">
         <router-view></router-view>
@@ -35,7 +39,11 @@ export default {
   // 根据不同初始路由有不同的selected
   // 需要知道初始路由是什么？this.$route.path可以拿到当前路由
   // 根据初始路由的不同设置不同的selected
-
+  methods: {
+    back() {
+      this.$router.go(-1);
+    }
+  },
   created() {
     if (this.$route.path == "/index") {
       this.selected = "movie";

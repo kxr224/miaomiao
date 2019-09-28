@@ -1,6 +1,7 @@
 import http from './api'
 
-// 返回一个promise
+// 没有输入
+// 返回一个promise，通过promise对象可以拿到城市的数据
 function getCityList() {
     // 请求成功之后，把这个城市数据放到缓存中，下次再请求的时候，如果缓存中有数据就从缓存中拿，
     // 如果没有数据，就调用接口
